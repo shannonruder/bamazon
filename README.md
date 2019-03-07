@@ -1,4 +1,4 @@
-# bamazo
+# bamazon
 
 **A command Line app using Node.js and MySQL to mimic a basic online storefront.**
 
