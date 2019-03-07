@@ -1,4 +1,6 @@
-# bamazon: A command Line app using Node.js and MySQL to mimic a basic online storefront.
+# bamazo
+
+**A command Line app using Node.js and MySQL to mimic a basic online storefront.**
 
 **Creator**: `Shannon Ruder`
 
