@@ -1,64 +1,62 @@
-# bamazon
+#Bamazon
 
-**A command Line app using Node.js and MySQL to mimic a basic online storefront.**
-
-**Creator**: `Shannon Ruder`
-
-**Created on**: `Mar 06 2019`
+A Node.js & MySQL command line Amazon-like storefront app that takes in customers orders and depletes stock from the stores Inventory. 
 
 ### Overview
 
 
-This assignment is a command-line app using Node.js and MySqyl to create an Amazon-like storefront populated with products and customer orders.
+## Usage
 
-* [To clone or download the game, here is the github link:](https://shannonruder.github.io/bamazon/)
+1. Clone repo
+2. npm install
+3. cd Bamazon
+4. node server.js
+5. run it locally. Default Port will be PORT 3306 in any browser.
 
 
-## Instructions
+## Tech Used 
 
-# Node.js & MySQL
+* Node.js 
+* Javascript
+* MySQL 
+* Cli-View 
 
-## Overview
+#### Instructions:
 
-This command line app takes in orders from customers and depletes stock from the store's inventory. This program tracks product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
+### Challenge #1: Customer View (Minimum Requirement)
 
-This app requires the MySQL and Inquirer npm packages for data input and storage.
+1. Database is called `Bamazon`.
 
-## Instructions
+2. There is a Table inside of that database called `products`.
 
-### Challenge #1: Customer View 
+3. The products table was created with the following columns.
 
-1. Create a MySQL Database called `bamazon`.
+	* itemID (unique id for each product)
 
-2. Then create a Table inside of that database called `products`.
+	* productName (Name of product)
 
-3. The products table should have each of the following columns:
+	* departmentName 
 
-   * item_id (unique id for each product)
+	* price (cost to customer)
 
-   * product_name (Name of product)
+	* stockQuantity (how much of the product is available in stores)
 
-   * department_name
+4. I populated the database with 10+ different products. 
 
-   * price (cost to customer)
+5. There is a Node application called `BamazonCustomer.js`. Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
-   * stock_quantity (how much of the product is available in stores)
+6. Bamazon then prompts users with two messages. 
+	* The first ask them the ID of the product they would like to buy. 
+	* The second message should ask how many units of the product they would like to buy.
 
-4. Populate this database with around 10 different products. (i.e. Insert "mock" data rows into this database and table).
+7. Once an order has been placed the application then checks to see if the store has enough of the product to meet the user's request. 
+	* If not, the app will log: `Insufficient quantity!`, and then prevent the order from going through.
 
-5. Then create a Node application called `bamazonCustomer.js`. Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
+8. However, if the store *does* have enough of the product, It will fulfill the users's order. 
+	* This means updating the SQL database to reflect the remaining quantity.
+	* Once the update goes through, it will show the customer the total cost of their purchase.
 
-6. The app should then prompt users with two messages.
+---------------------------------
 
-   * The first should ask them the ID of the product they would like to buy.
-   * The second message should ask how many units of the product they would like to buy.
-
-7. Once the customer has placed the order, your application should check if your store has enough of the product to meet the customer's request.
-
-   * If not, the app should log a phrase like `Insufficient quantity!`, and then prevent the order from going through.
-
-8. However, if your store _does_ have enough of the product, you should fulfill the customer's order.
-   * This means updating the SQL database to reflect the remaining quantity.
-   * Once the update goes through, show the customer the total cost of their purchase.
 
 
