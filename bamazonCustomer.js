@@ -16,6 +16,7 @@ var connection = mysql.createConnection({
 var checkAndBuy = function() {
     connection.query('SELECT * FROM products', function(err, res) {
         //Creates a new table with a command line view 
+       
         var table = new Table({
             head: ['ID', 'Product Name', 'Department', 'Price', 'Stock Quantity']
         });
@@ -24,8 +25,8 @@ var checkAndBuy = function() {
         console.log("HERE ARE ALL THE ITEMS AVAILABLE FOR SALE: ");
         console.log("===========================================");
         for (var i = 0; i < res.length; i++) {
-            if (err) console.log("Oops... Something went wrong");
-            table.push([res[i].itemId, res[i].productName, res[i].departmentName, res[i].price.toFixed(2), res[i].stockQuantity]);
+
+            table.push([res[i].id, res[i].productName, res[i].departmentName, res[i].price.toFixed(2), res[i].stockQuantity]);
         }
        console.log("-----------------------------------------------");
           
@@ -55,14 +56,17 @@ var checkAndBuy = function() {
                 }
             }
         }]).then(function(answer) {
-            var chosenId = answer.itemId - 1
-            var chosenProduct = res[chosenId]
-            var chosenQuantity = answer.Quantity
+            var chosenId = parseInt(answer.itemId) - 1;
+            var chosenProduct = res[chosenId];
+            var chosenQuantity = answer.Quantity;
             if (chosenQuantity < res[chosenId].stockQuantity) {
+                console.log("======================================================================");
                 console.log("Your total for " + "(" + answer.Quantity + ")" + " - " + res[chosenId].productName + " is: " + res[chosenId].price.toFixed(2) * chosenQuantity);
+                console.log("======================================================================");
                 connection.query("UPDATE products SET ? WHERE ?", [{
                     stockQuantity: res[chosenId].stockQuantity - chosenQuantity
                 }, {
+                    
                     id: res[chosenId].id
                 }], function(err, res) {
                     //console.log(err);
@@ -70,7 +74,7 @@ var checkAndBuy = function() {
                 });
 
             } else {
-                console.log("Sorry, insufficient Quanity at this time. All we have is " + res[chosenId].stockQuantity + " in our Inventory.");
+                console.log("Sorry, insufficient Quantity at this time. All we have is " + res[chosenId].stockQuantity + " in our Inventory.");
                 checkAndBuy();
             }
         })
